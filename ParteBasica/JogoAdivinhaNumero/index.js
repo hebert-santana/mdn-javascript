@@ -1,29 +1,32 @@
     var numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+    
     var palpites = document.querySelector('.palpites');
     var ultimoResultado = document.querySelector('.ultimoResultado');
     var maiorOuMenor = document.querySelector('.maiorOuMenor');
+
     var enviarPalpite = document.querySelector('.enviarPalpite');
-    var campoPalpites = document.querySelector('.campoPalpites');
+    var campoPalpites = document.querySelector('.campoPalpites'); // input tipo texto
+
     var contadorDePalpites = 1;
     var botaoReset;
 
     function checaPalpite() {
-      var palpitesDoJogador = Number(campoPalpites.value);
+      var palpitesDoJogador = Number(campoPalpites.value);  // converte tipo texto para tipo número
       if (contadorDePalpites === 1) {
-        palpites.textContent = 'Palpites anteriores: ';
+        palpites.textContent = 'Palpites anteriores: ';     // modifica o texto dentro do parágrafo de class="palpites"
       }
 
-      palpites.textContent += palpitesDoJogador + ' ';
+      palpites.textContent += palpitesDoJogador + ' ';      // modifica o texto dentro do parágrafo de class="palpites"
 
       if (palpitesDoJogador === numeroAleatorio) {
         ultimoResultado.textContent = 'Parabéns! Seu número está certo!';
         ultimoResultado.style.backgroundColor = 'green';
         maiorOuMenor.textContent = '';
-        gameOver();
-      } else if (contadorDePalpites === 10) {
+        gameOver();                                         // finaliza o jogo
+      } else if (contadorDePalpites === 10) {               // máximo de 10 palpites
         ultimoResultado.textContent = '!!!FIM DE JOGO!!!';
         maiorOuMenor.textContent = '';
-        gameOver();
+        gameOver();                                         // finaliza o jogo
       } else {
         ultimoResultado.textContent = 'Errado!';
         ultimoResultado.style.backgroundColor = 'red';
@@ -34,11 +37,11 @@
         }
       }
 
-      contadorDePalpites++;
-      campoPalpites.value = '';
+      contadorDePalpites++;                                 // contador aumenta até atingir o máximo de palpites
+      campoPalpites.value = '';                             // limpa o texto do input para digitar novo palpite
     }
 
-    enviarPalpite.addEventListener('click', checaPalpite);
+    enviarPalpite.addEventListener('click', checaPalpite);  // ao clicar no input de tipo submit, ativa a função checaPalpite
 
 
     function gameOver() {
